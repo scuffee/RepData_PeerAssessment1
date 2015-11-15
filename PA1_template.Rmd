@@ -21,12 +21,14 @@ output: html_document
 Add packages to execute script
 
 ```{r}
+
 library(data.table)
 library(plyr)
 library(dplyr)
 library (tidyr)
 library(stringr)
 library(graphics)
+library(knitr)
 ```
 
  Load the function
@@ -34,7 +36,15 @@ library(graphics)
 ```{r data_analysis, echo = TRUE}
 
   data_analysis <- function()
-  {
+  
+  {     
+      #Check to see if requred directory exists, if not create it.
+    
+      if(!file.exists("C:/Users/Owner/Documents/specdata"))
+         {
+              dir.create("C:/Users/Owner/Documents/specdata")
+         } 
+  
   
       # download te data
     
@@ -50,14 +60,18 @@ library(graphics)
       
       # Calulate the daily steps
       
-      png(file = "plotdata_analysis1.png", width = 600, height = 600)
+      
       hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="red")
-      dev.off()
+      
       
       # Caluculate the mean number of daily steps
       
       activityDataSteps1 <- summarize(activityDataSteps, Mean = mean(steps))
-      activityDataSteps1        
+      activityDataSteps1  
+      meanSteps <- mean(activityData$steps)
+      print ("The mean steps are:")
+      print (meanSteps)
+      
   
       # Create histogram representing the daily mean number of daily steps
       
@@ -69,20 +83,28 @@ library(graphics)
       
       activityDataSteps2 <- summarize(activityDataSteps, Median = median(steps))
       activityDataSteps2        
-      
+      medianSteps <- (median(activityData$steps))
+      print ("The median steps are:")
+      print(medianSteps)
       
       # Create histogram representing the daily median number of daily steps
       
-      png(file = "plotdata_analysis3.png", width = 600, height = 600)
+      
       hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="red")
-      dev.off()
+      
+      #Caluculate the interval steps
+      
+       activityDataSteps5 <- group_by(activityData, as.factor(interval))
       
       #A time series plot (i.e. type = "l") 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
      
-      png(file = "plotdata_analysis4.png", width = 600, height = 600)
-      plot(activityDataSteps$interval,activityDataSteps$steps, type = "l", main = "Daily Steps by Intervals", xlab = "Intervals", ylab = "Number of Steps")
-      dev.off()
+     plot(as.numeric(activityDataSteps5$interval),activityDataSteps5$steps, type = "l", xaxt = "n", main = "Daily Steps by Intervals", xlab = "Intervals", ylab = "Number of Steps")
+      axis(1, at=as.numeric(activityDataSteps5$interval), labels = activityDataSteps5$interval)
       
+     
+     
+      
+   
       #Calculate and report the total number of missing values in the dataset
       
       activityData1 <- read.csv("C:/Users/Owner/Documents/specdata/activity.csv")
@@ -95,7 +117,7 @@ library(graphics)
 ```
 
 
-```{r Execute the function}
+```{r Execute the function, figure.width = 7}
 
     data_analysis()
     
