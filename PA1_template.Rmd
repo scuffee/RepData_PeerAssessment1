@@ -29,13 +29,15 @@ library(stringr)
 library(graphics)
 ```
 
- Load the data 
+ Load the function
  
 ```{r data_analysis, echo = TRUE}
 
   data_analysis <- function()
   {
   
+      # download te data
+    
       fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip"
       download.file(fileUrl, destfile = "C:/Users/Owner/Documents/specdata/repdata_data_activity.zip", method = "libcurl")
       unzip("C:/Users/Owner/Documents/specdata/repdata_data_activity.zip")
@@ -47,25 +49,39 @@ library(graphics)
       activityDataSteps 
       
       # Calulate the daily steps
+      
       hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="red")
       
       # Caluculate the mean number of daily steps
+      
       activityDataSteps1 <- summarize(activityDataSteps, Mean = mean(steps))
       activityDataSteps1        
   
       # Create histogram representing the daily mean number of daily steps
+      
       hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="red") 
       
       #Caluculate the median daily steps
+      
       activityDataSteps2 <- summarize(activityDataSteps, Median = median(steps))
       activityDataSteps2        
       
       
       # Create histogram representing the daily median number of daily steps
+      
       hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="red")
       
-      #A time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of stactiv
+      #A time series plot (i.e. type = "l") 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
+      
       plot(activityDataSteps$interval,activityDataSteps$steps, type = "l", main = "Daily Steps by Intervals", xlab = "Intervals", ylab = "Number of Steps")
+      
+      #Calculate and report the total number of missing values in the dataset
+      
+      activityData1 <- read.csv("C:/Users/Owner/Documents/specdata/activity.csv")
+      NAS <- sum(is.na(activityData1$steps))
+      print("The number of NA's are: ")
+      print(NAS)
+      
   }    
   
 ```
