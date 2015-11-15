@@ -62,9 +62,9 @@ library(graphics)
   
       # Create histogram representing the daily mean number of daily steps
       
-      png(file = "plotdata_analysis2.png", width = 600, height = 600)
+      
       hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="red") 
-      dev.off()
+      
       
       #Caluculate the median daily steps
       
@@ -100,7 +100,10 @@ library(graphics)
     data_analysis()
 ```
 
+![plot of chunk Execute the function](figure/Execute the function-1.png) 
+
 ```
 ## [1] "The number of NA's are: "
 ## [1] 2304
 ```
+  

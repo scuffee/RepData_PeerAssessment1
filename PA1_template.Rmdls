@@ -50,9 +50,9 @@ library(graphics)
       
       # Calulate the daily steps
       
-      png(file = "plotdata_analysis1.png", width = 600, height = 600)
+      
       hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="red")
-      dev.off()
+      
       
       # Caluculate the mean number of daily steps
       
@@ -61,9 +61,9 @@ library(graphics)
   
       # Create histogram representing the daily mean number of daily steps
       
-      png(file = "plotdata_analysis2.png", width = 600, height = 600)
+      
       hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="red") 
-      dev.off()
+      
       
       #Caluculate the median daily steps
       
@@ -73,15 +73,15 @@ library(graphics)
       
       # Create histogram representing the daily median number of daily steps
       
-      png(file = "plotdata_analysis3.png", width = 600, height = 600)
+      
       hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="red")
-      dev.off()
+      
       
       #A time series plot (i.e. type = "l") 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
      
-      png(file = "plotdata_analysis4.png", width = 600, height = 600)
+      
       plot(activityDataSteps$interval,activityDataSteps$steps, type = "l", main = "Daily Steps by Intervals", xlab = "Intervals", ylab = "Number of Steps")
-      dev.off()
+      
       
       #Calculate and report the total number of missing values in the dataset
       
@@ -100,3 +100,4 @@ library(graphics)
     data_analysis()
     
 ```
+  
