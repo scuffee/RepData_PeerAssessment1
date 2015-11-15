@@ -28,6 +28,7 @@ library(dplyr)
 library (tidyr)
 library(stringr)
 library(graphics)
+library(knitr)
 ```
 
  Load the function
@@ -35,7 +36,15 @@ library(graphics)
 
 ```r
   data_analysis <- function()
-  {
+  
+  {     
+      #Check to see if requred directory exists, if not create it.
+    
+      if(!file.exists("C:/Users/Owner/Documents/specdata"))
+         {
+              dir.create("C:/Users/Owner/Documents/specdata")
+         } 
+  
   
       # download te data
     
@@ -45,45 +54,59 @@ library(graphics)
       
       #Process the data with the NA's removed
      
-      activityData <- na.omit(read.csv("C:/Users/Owner/Documents/specdata/activity.csv"))  
+      activityData <- na.omit(read.csv("C:/Users/Owner/Documents/specdata/activity.csv")) 
+      
+      # Calculate the daily steps
       activityDataSteps <- group_by(activityData, date)
       activityDataSteps 
       
-      # Calulate the daily steps
+      # Calulate Create histogram representing the daily number of steps
       
-      
+    
       hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="red")
       
       
       # Caluculate the mean number of daily steps
       
       activityDataSteps1 <- summarize(activityDataSteps, Mean = mean(steps))
-      activityDataSteps1        
+      activityDataSteps1  
+      meanSteps <- mean(activityData$steps)
+      print ("The mean steps are:")
+      print (meanSteps)
+      
   
       # Create histogram representing the daily mean number of daily steps
       
       
-      hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="red") 
+      hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="red")
       
       
       #Caluculate the median daily steps
       
       activityDataSteps2 <- summarize(activityDataSteps, Median = median(steps))
       activityDataSteps2        
-      
+      medianSteps <- (median(activityData$steps))
+      print ("The median steps are:")
+      print(medianSteps)
       
       # Create histogram representing the daily median number of daily steps
       
       
       hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="red")
       
+      #Caluculate the interval steps
       
-      #A time series plot (i.e. type = "l") 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
+       activityDataSteps5 <- group_by(activityData, as.factor(interval))
+      
+      #A time series plot 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
+     
+     plot(as.numeric(activityDataSteps5$interval),activityDataSteps5$steps, type = "l", xaxt = "n", main = "Daily Steps by Intervals", xlab = "Time Intervals", ylab = "Number of Steps by Interval")
+      axis(1, at=as.numeric(activityDataSteps5$interval), labels = activityDataSteps5$interval)
+      
+     
      
       
-      plot(activityDataSteps$interval,activityDataSteps$steps, type = "l", main = "Daily Steps by Intervals", xlab = "Intervals", ylab = "Number of Steps")
-      
-      
+   
       #Calculate and report the total number of missing values in the dataset
       
       activityData1 <- read.csv("C:/Users/Owner/Documents/specdata/activity.csv")
@@ -100,7 +123,21 @@ library(graphics)
     data_analysis()
 ```
 
-![plot of chunk Execute the function](figure/Execute the function-1.png) ![plot of chunk Execute the function](figure/Execute the function-2.png) ![plot of chunk Execute the function](figure/Execute the function-3.png) ![plot of chunk Execute the function](figure/Execute the function-4.png) 
+![plot of chunk Execute the function, figure](figure/Execute the function, figure-1.png) 
+
+```
+## [1] "The mean steps are:"
+## [1] 37.3826
+```
+
+![plot of chunk Execute the function, figure](figure/Execute the function, figure-2.png) 
+
+```
+## [1] "The median steps are:"
+## [1] 0
+```
+
+![plot of chunk Execute the function, figure](figure/Execute the function, figure-3.png) ![plot of chunk Execute the function, figure](figure/Execute the function, figure-4.png) 
 
 ```
 ## [1] "The number of NA's are: "

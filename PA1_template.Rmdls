@@ -60,10 +60,10 @@ library(knitr)
       activityDataSteps <- group_by(activityData, date)
       activityDataSteps 
       
-      # Calulate Create histogram representing the daily number of daily step
+      # Calulate Create histogram representing the daily number of steps
       
     
-      hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="blue")
+      hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="red")
       
       
       # Caluculate the mean number of daily steps
@@ -78,7 +78,7 @@ library(knitr)
       # Create histogram representing the daily mean number of daily steps
       
       
-      hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="blue")
+      hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="red")
       
       
       #Caluculate the median daily steps
@@ -92,15 +92,15 @@ library(knitr)
       # Create histogram representing the daily median number of daily steps
       
       
-      hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="blue")
+      hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="red")
       
       #Caluculate the interval steps
       
        activityDataSteps5 <- group_by(activityData, as.factor(interval))
       
-      #A time series plot (i.e. type = "l") 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
+      #A time series plot 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
      
-     plot(as.numeric(activityDataSteps5$interval),activityDataSteps5$steps, type = "l", xaxt = "n", main = "Daily Steps by Intervals", xlab = "Time Intervals", ylab = "Number of Steps")
+     plot(as.numeric(activityDataSteps5$interval),activityDataSteps5$steps, type = "l", xaxt = "n", main = "Daily Steps by Intervals", xlab = "Time Intervals", ylab = "Number of Steps by Interval")
       axis(1, at=as.numeric(activityDataSteps5$interval), labels = activityDataSteps5$interval)
       
      
