@@ -117,7 +117,7 @@ library(knitr)
 ```
 
 
-```{r Execute the function, figure.width = 7}
+```{r Execute the function}
 
     data_analysis()
     
