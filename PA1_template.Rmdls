@@ -54,14 +54,16 @@ library(knitr)
       
       #Process the data with the NA's removed
      
-      activityData <- na.omit(read.csv("C:/Users/Owner/Documents/specdata/activity.csv"))  
+      activityData <- na.omit(read.csv("C:/Users/Owner/Documents/specdata/activity.csv")) 
+      
+      # Calculate the daily steps
       activityDataSteps <- group_by(activityData, date)
       activityDataSteps 
       
-      # Calulate the daily steps
+      # Calulate Create histogram representing the daily number of daily step
       
-      
-      hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="red")
+    
+      hist(activityDataSteps$steps,main = " Daily Steps", xlab = "Steps", col ="blue")
       
       
       # Caluculate the mean number of daily steps
@@ -76,7 +78,7 @@ library(knitr)
       # Create histogram representing the daily mean number of daily steps
       
       
-      hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="red") 
+      hist(activityDataSteps1$Mean, main = "Mean Daily Steps", xlab = "Steps", col ="blue")
       
       
       #Caluculate the median daily steps
@@ -90,7 +92,7 @@ library(knitr)
       # Create histogram representing the daily median number of daily steps
       
       
-      hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="red")
+      hist(activityDataSteps2$Median, main = "Median Daily Steps", xlab = "Steps", col ="blue")
       
       #Caluculate the interval steps
       
@@ -98,7 +100,7 @@ library(knitr)
       
       #A time series plot (i.e. type = "l") 5-minute interval (x-axis), average number of steps taken, averaged across all days (y-axis)
      
-     plot(as.numeric(activityDataSteps5$interval),activityDataSteps5$steps, type = "l", xaxt = "n", main = "Daily Steps by Intervals", xlab = "Intervals", ylab = "Number of Steps")
+     plot(as.numeric(activityDataSteps5$interval),activityDataSteps5$steps, type = "l", xaxt = "n", main = "Daily Steps by Intervals", xlab = "Time Intervals", ylab = "Number of Steps")
       axis(1, at=as.numeric(activityDataSteps5$interval), labels = activityDataSteps5$interval)
       
      
@@ -117,7 +119,7 @@ library(knitr)
 ```
 
 
-```{r Execute the function}
+```{r Execute the function, figure}
 
     data_analysis()
     
