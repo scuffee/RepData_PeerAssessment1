@@ -2,7 +2,9 @@
 title: "PA1_template.Rmd"
 author: "Sandra Cuffee"
 date: "December 27, 2017"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
  This assignment makes use of data from a personal activity monitoring device.
@@ -37,7 +39,7 @@ library(knitr)
 
  Load the function
  
-```{r data_analysis, echo = TRUE}
+```{r data_analysis, cache = TRUE, echo = TRUE}
 
   data_analysis <- function()
   
