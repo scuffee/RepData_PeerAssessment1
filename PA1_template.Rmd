@@ -31,8 +31,7 @@ library(plyr)
 library(dplyr)
 library (tidyr)
 library(stringr)
-library(ggplot2)
-library(lubridate)
+library(graphics)
 library(knitr)
 ```
 
